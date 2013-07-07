@@ -1,2 +1,11 @@
-CardGame.xcodeproj/project.xcworkspace/
-CardGame.xcodeproj/xcuserdata/
+# -- xcode
+*.xcworkspace
+xcuserdata
+
+# -- other
+.DS_Store
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
