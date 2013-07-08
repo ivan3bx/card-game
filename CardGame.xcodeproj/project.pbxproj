@@ -22,6 +22,7 @@
 		2C3647A617830CBA00623D6C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3647A517830CBA00623D6C /* Default@2x.png */; };
 		2C3647A817830CBA00623D6C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3647A717830CBA00623D6C /* Default-568h@2x.png */; };
 		2C3647AB17830CBA00623D6C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C3647A917830CBA00623D6C /* MainStoryboard.storyboard */; };
+		2C3F7326178A6EE300A39965 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F7325178A6EE300A39965 /* CardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		2C3647A517830CBA00623D6C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2C3647A717830CBA00623D6C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2C3647AA17830CBA00623D6C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		2C3F7324178A6EE300A39965 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Models/CardMatchingGame.h; sourceTree = "<group>"; };
+		2C3F7325178A6EE300A39965 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Models/CardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				2C2716071789162F0043EB9E /* PlayingCard.m */,
 				2C2716081789162F0043EB9E /* PlayingCardDeck.h */,
 				2C2716091789162F0043EB9E /* PlayingCardDeck.m */,
+				2C3F7324178A6EE300A39965 /* CardMatchingGame.h */,
+				2C3F7325178A6EE300A39965 /* CardMatchingGame.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				2C27160C1789162F0043EB9E /* PlayingCard.m in Sources */,
 				2C27160D1789162F0043EB9E /* PlayingCardDeck.m in Sources */,
 				2C271610178916570043EB9E /* CardGameViewController.m in Sources */,
+				2C3F7326178A6EE300A39965 /* CardMatchingGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

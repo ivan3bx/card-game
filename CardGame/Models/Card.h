@@ -12,7 +12,7 @@
 
 @property(strong, nonatomic) NSString *contents;
 @property(nonatomic, getter = isFaceUp) BOOL faceUp;
-@property(nonatomic, getter = isPlayable) BOOL playable;
+@property(nonatomic, getter = isUnPlayable) BOOL unPlayable;
 
 /*
  * Returns whether this card matches contents in any card in the array
