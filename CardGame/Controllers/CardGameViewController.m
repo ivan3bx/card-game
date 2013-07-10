@@ -14,6 +14,7 @@
 @property (nonatomic) NSUInteger count;
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *results;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
@@ -46,11 +47,20 @@
         cardButton.alpha = card.isUnPlayable ? 0.3 : 1.0;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    self.results.text = self.game.lastResult;
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons = cardButtons;
+    [self updateUI];
+}
+
+- (IBAction)resetGame:(id)sender
+{
+    self.game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+                                                  usingDeck:[[PlayingCardDeck alloc] init]];
+    self.count = 0;
     [self updateUI];
 }
 
