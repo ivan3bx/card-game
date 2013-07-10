@@ -24,7 +24,6 @@
                 [self addCard:newCard atTop:YES];
             }
         }
-        NSLog(@"Added %d cards to deck..", [super count]);
     }
     return self;
 }
