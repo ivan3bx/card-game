@@ -204,6 +204,14 @@
                                     <action selector="flipCard:" destination="2" eventType="touchUpInside" id="M9B-ME-ZL8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0Y-C3-6jE">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="h0b-TB-48Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -211,6 +219,7 @@
                             <constraint firstAttribute="bottom" secondItem="ek9-ec-dmr" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="3Qm-wb-iuA"/>
                             <constraint firstItem="5nF-vF-C4O" firstAttribute="leading" secondItem="JVm-G1-aPk" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="3ie-Lx-j4F"/>
                             <constraint firstItem="H92-H6-S7B" firstAttribute="baseline" secondItem="JVm-G1-aPk" secondAttribute="baseline" type="default" id="4ED-A6-Dle"/>
+                            <constraint firstAttribute="trailing" secondItem="Q0Y-C3-6jE" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="4qi-YB-SbJ"/>
                             <constraint firstItem="EYO-ul-xRg" firstAttribute="top" secondItem="DWO-0E-WDd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6Wh-bU-Odj"/>
                             <constraint firstItem="EYO-ul-xRg" firstAttribute="bottom" secondItem="pAW-YG-rRW" secondAttribute="bottom" type="default" id="ADO-13-Hdh"/>
                             <constraint firstItem="aOl-RJ-u3k" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="AjH-RH-7QM"/>
@@ -234,6 +243,7 @@
                             <constraint firstAttribute="trailing" secondItem="WNC-Ye-LX1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XZy-fk-bTZ"/>
                             <constraint firstAttribute="trailing" secondItem="5nF-vF-C4O" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ZIn-eV-ZLS"/>
                             <constraint firstItem="EYO-ul-xRg" firstAttribute="leading" secondItem="9pB-gK-TWn" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="b9i-0X-G8Q"/>
+                            <constraint firstAttribute="bottom" secondItem="Q0Y-C3-6jE" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="cqV-3P-rog"/>
                             <constraint firstItem="pAW-YG-rRW" firstAttribute="leading" secondItem="EYO-ul-xRg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="eCm-UD-Xyu"/>
                             <constraint firstItem="WNC-Ye-LX1" firstAttribute="leading" secondItem="yje-Pg-IiP" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="gJH-F1-vc5"/>
                             <constraint firstItem="EYO-ul-xRg" firstAttribute="bottom" secondItem="9pB-gK-TWn" secondAttribute="bottom" type="default" id="gbx-nZ-L8W"/>
@@ -255,6 +265,7 @@
                     </view>
                     <connections>
                         <outlet property="flipsLabel" destination="ek9-ec-dmr" id="FMQ-4B-E3G"/>
+                        <outlet property="scoreLabel" destination="Q0Y-C3-6jE" id="Q5h-4G-9fH"/>
                         <outletCollection property="cardButtons" destination="aOl-RJ-u3k" id="0mf-dT-v2g"/>
                         <outletCollection property="cardButtons" destination="H92-H6-S7B" id="wDx-t4-Mny"/>
                         <outletCollection property="cardButtons" destination="5nF-vF-C4O" id="bJW-mq-buD"/>
@@ -271,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131" y="12"/>
+            <point key="canvasLocation" x="491" y="52"/>
         </scene>
     </scenes>
     <classes>
@@ -279,7 +290,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="flipCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
             </relationships>
         </class>

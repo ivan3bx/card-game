@@ -13,6 +13,7 @@
 @interface CardGameViewController ()
 @property (nonatomic) NSUInteger count;
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
@@ -44,6 +45,7 @@
         cardButton.enabled = !card.isUnPlayable;
         cardButton.alpha = card.isUnPlayable ? 0.3 : 1.0;
     }
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons
