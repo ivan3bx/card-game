@@ -36,6 +36,14 @@
     return self;
 }
 
+-(NSUInteger)numberOfCardsToMatch
+{
+    if (!_numberOfCardsToMatch) {
+        _numberOfCardsToMatch = 2;
+    }
+    return _numberOfCardsToMatch;
+}
+
 -(NSMutableArray*)cards
 {
     if (!_cards) {
