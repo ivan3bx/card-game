@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *results;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *matchCardControl;
 @end
 
 @implementation CardGameViewController
@@ -47,7 +46,6 @@
         cardButton.enabled = !card.isUnPlayable;
         cardButton.alpha = card.isUnPlayable ? 0.3 : 1.0;
     }
-    self.matchCardControl.enabled = (self.count == 0);
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.results.text = self.game.lastResult;
 }

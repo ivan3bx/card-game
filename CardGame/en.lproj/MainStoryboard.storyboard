@@ -298,18 +298,6 @@
                                     <action selector="resetGame:" destination="2" eventType="touchUpInside" id="GCg-Rt-jUE"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="h4x-d2-nsg">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="143" id="dwR-GU-fqH"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="2 card"/>
-                                    <segment title="3 card"/>
-                                </segments>
-                                <connections>
-                                    <action selector="changeMatchCardCount:" destination="2" eventType="valueChanged" id="29A-Rr-ceG"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -354,7 +342,6 @@
                             <constraint firstAttribute="trailing" secondItem="WNC-Ye-LX1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XZy-fk-bTZ"/>
                             <constraint firstItem="zgn-tL-UyE" firstAttribute="top" secondItem="aOl-RJ-u3k" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Xgs-1N-Bi3"/>
                             <constraint firstItem="ek9-ec-dmr" firstAttribute="top" secondItem="0cp-H2-Udt" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="YKv-oI-YFp"/>
-                            <constraint firstItem="h4x-d2-nsg" firstAttribute="top" secondItem="MSD-BY-99h" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Ys1-1b-rUt"/>
                             <constraint firstAttribute="trailing" secondItem="5nF-vF-C4O" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ZIn-eV-ZLS"/>
                             <constraint firstItem="MSD-BY-99h" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ZRu-Vt-0vy"/>
                             <constraint firstItem="DWO-0E-WDd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="102" id="ZhZ-jv-v3i"/>
@@ -378,7 +365,6 @@
                             <constraint firstAttribute="trailing" secondItem="ePy-ts-kkN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pzs-Nh-cEG"/>
                             <constraint firstItem="ek9-ec-dmr" firstAttribute="trailing" secondItem="0cp-H2-Udt" secondAttribute="trailing" type="default" id="sKY-f5-66l"/>
                             <constraint firstItem="pAW-YG-rRW" firstAttribute="top" secondItem="yje-Pg-IiP" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="sRw-dg-RD3"/>
-                            <constraint firstAttribute="trailing" secondItem="h4x-d2-nsg" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tRh-J0-Ptk"/>
                             <constraint firstItem="JVm-G1-aPk" firstAttribute="leading" secondItem="H92-H6-S7B" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="urP-Fy-9GK"/>
                             <constraint firstItem="PIH-lv-kf0" firstAttribute="leading" secondItem="dP0-Bq-Zie" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="usW-r7-1c3"/>
                             <constraint firstItem="EYO-ul-xRg" firstAttribute="top" secondItem="DWO-0E-WDd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="wU8-ZF-aIJ"/>
@@ -390,7 +376,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="flipsLabel" destination="ek9-ec-dmr" id="FMQ-4B-E3G"/>
-                        <outlet property="matchCardControl" destination="h4x-d2-nsg" id="NPn-ug-Pwf"/>
                         <outlet property="results" destination="MSD-BY-99h" id="I4e-Oe-LKB"/>
                         <outlet property="scoreLabel" destination="Q0Y-C3-6jE" id="Q5h-4G-9fH"/>
                         <outletCollection property="cardButtons" destination="aOl-RJ-u3k" id="0mf-dT-v2g"/>
@@ -416,6 +401,24 @@
             <point key="canvasLocation" x="221" y="101"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CardGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeCardMatchCount:"/>
+                <relationship kind="action" name="changeMatchCardCount:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
+                <relationship kind="action" name="resetGame:"/>
+                <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="results" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
