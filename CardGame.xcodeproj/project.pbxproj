@@ -23,6 +23,8 @@
 		2C3647A817830CBA00623D6C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3647A717830CBA00623D6C /* Default-568h@2x.png */; };
 		2C3647AB17830CBA00623D6C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C3647A917830CBA00623D6C /* MainStoryboard.storyboard */; };
 		2C3F7326178A6EE300A39965 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F7325178A6EE300A39965 /* CardMatchingGame.m */; };
+		2CA3AAA617951152003ACADE /* SetGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3AAA517951152003ACADE /* SetGameViewController.m */; };
+		2CA3AAA81795178A003ACADE /* lur_futurama.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3AAA71795178A003ACADE /* lur_futurama.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,9 @@
 		2C3647AA17830CBA00623D6C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2C3F7324178A6EE300A39965 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Models/CardMatchingGame.h; sourceTree = "<group>"; };
 		2C3F7325178A6EE300A39965 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Models/CardMatchingGame.m; sourceTree = "<group>"; };
+		2CA3AAA417951152003ACADE /* SetGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetGameViewController.h; path = Controllers/SetGameViewController.h; sourceTree = "<group>"; };
+		2CA3AAA517951152003ACADE /* SetGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetGameViewController.m; path = Controllers/SetGameViewController.m; sourceTree = "<group>"; };
+		2CA3AAA71795178A003ACADE /* lur_futurama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lur_futurama.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,8 @@
 			children = (
 				2C27160E178916570043EB9E /* CardGameViewController.h */,
 				2C27160F178916570043EB9E /* CardGameViewController.m */,
+				2CA3AAA417951152003ACADE /* SetGameViewController.h */,
+				2CA3AAA517951152003ACADE /* SetGameViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -118,6 +125,7 @@
 		2C36479817830CBA00623D6C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CA3AAA71795178A003ACADE /* lur_futurama.png */,
 				2C3647A017830CBA00623D6C /* CardGameAppDelegate.h */,
 				2C3647A117830CBA00623D6C /* CardGameAppDelegate.m */,
 				2C36479917830CBA00623D6C /* CardGame-Info.plist */,
@@ -205,6 +213,7 @@
 				2C3647A617830CBA00623D6C /* Default@2x.png in Resources */,
 				2C3647A817830CBA00623D6C /* Default-568h@2x.png in Resources */,
 				2C3647AB17830CBA00623D6C /* MainStoryboard.storyboard in Resources */,
+				2CA3AAA81795178A003ACADE /* lur_futurama.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +232,7 @@
 				2C27160D1789162F0043EB9E /* PlayingCardDeck.m in Sources */,
 				2C271610178916570043EB9E /* CardGameViewController.m in Sources */,
 				2C3F7326178A6EE300A39965 /* CardMatchingGame.m in Sources */,
+				2CA3AAA617951152003ACADE /* SetGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

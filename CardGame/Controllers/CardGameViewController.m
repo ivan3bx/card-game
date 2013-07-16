@@ -42,7 +42,15 @@
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        cardButton.selected = card.isFaceUp;
+
+        if (card.isFaceUp) {
+            cardButton.selected = YES;
+            [cardButton setImage:nil forState:UIControlStateNormal];
+        } else {
+            cardButton.selected = NO;
+            [cardButton setImage:[UIImage imageNamed:@"lur_futurama.png"] forState:UIControlStateNormal];
+        }
+        
         cardButton.enabled = !card.isUnPlayable;
         cardButton.alpha = card.isUnPlayable ? 0.3 : 1.0;
     }
