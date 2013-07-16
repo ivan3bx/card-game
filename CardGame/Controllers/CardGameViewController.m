@@ -71,10 +71,9 @@
     }
 }
 
-- (IBAction)resetGame:(id)sender
+- (IBAction)deal
 {
-    self.game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                  usingDeck:[[PlayingCardDeck alloc] init]];
+    self.game = nil;
     self.count = 0;
     [self updateUI];
 }
