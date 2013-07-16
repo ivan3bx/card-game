@@ -29,4 +29,10 @@
     // Implement deal logic
 }
 
+- (IBAction)flipCard:(UIButton *)sender
+{
+    self.count++;
+    // Implement logic for flipping card
+}
+
 @end
