@@ -15,7 +15,8 @@
 #pragma mark Initialization
 
 -(id)initWithCardCount:(NSUInteger)cardCount
-             usingDeck:(Deck*)deck;
+             usingDeck:(Deck*)deck
+        matchingNumber:(NSUInteger)numberOfCardsToMatch;
 
 #pragma mark -
 #pragma mark Playing a Card
@@ -26,5 +27,4 @@
 
 @property(nonatomic, readonly) int score;
 @property(nonatomic, readonly) NSString *lastResult;
-@property(nonatomic) NSUInteger numberOfCardsToMatch;
 @end

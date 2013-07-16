@@ -31,7 +31,8 @@
 {
     if (!_game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                  usingDeck:[[PlayingCardDeck alloc] init]];
+                                                  usingDeck:[[PlayingCardDeck alloc] init]
+                                             matchingNumber:2];
     }
     return _game;
 }
@@ -64,19 +65,6 @@
     [self updateUI];
 }
 - (IBAction)changeCardMatchCount:(id)sender {
-}
-
-- (IBAction)changeMatchCardCount:(UISegmentedControl *)sender
-{
-    switch (sender.selectedSegmentIndex) {
-        case 0:
-            self.game.numberOfCardsToMatch = 2;
-            break;
-        case 1:
-            self.game.numberOfCardsToMatch = 3;
-        default:
-            break;
-    }
 }
 
 - (IBAction)deal

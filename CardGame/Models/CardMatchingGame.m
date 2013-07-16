@@ -16,11 +16,14 @@
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (nonatomic, readwrite) int score;
 @property (nonatomic, readwrite) NSString *lastResult;
+@property (nonatomic, readwrite) NSUInteger numberOfCardsToMatch;
 @end
 
 @implementation CardMatchingGame
 
--(id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck
+-(id)initWithCardCount:(NSUInteger)cardCount
+             usingDeck:(Deck *)deck
+        matchingNumber:(NSUInteger)numberOfCardsToMatch
 {
     self = [super init];
     if (self) {
@@ -32,6 +35,7 @@
                 self.cards[i] = card;
             }
         }
+        self.numberOfCardsToMatch = numberOfCardsToMatch;
     }
     return self;
 }
