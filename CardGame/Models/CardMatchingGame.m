@@ -40,14 +40,6 @@
     return self;
 }
 
--(NSUInteger)numberOfCardsToMatch
-{
-    if (!_numberOfCardsToMatch) {
-        _numberOfCardsToMatch = 2;
-    }
-    return _numberOfCardsToMatch;
-}
-
 -(NSMutableArray*)cards
 {
     if (!_cards) {
@@ -64,50 +56,100 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = self.cards[index];
-    int scoreAdjustment = 0;
     
-    self.lastResult = @"";
+    int scoreAdjustment = 0;
+    NSString *scoreAdjustmentDescription = @"";
     
     if (!card.isUnPlayable) {
         //
         // Card is playable!
         //
         if (!card.isFaceUp) {
-            //
             // Card is transitioning to 'faceup', and might match!
-            //
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isFaceUp && !otherCard.isUnPlayable) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        //
-                        // It's a match, so both cards become unplayable
-                        //
-                        otherCard.unPlayable = YES;
-                        card.unPlayable = YES;
-                        scoreAdjustment = matchScore * MATCH_BONUS;
-                        self.lastResult = [NSString stringWithFormat:@"Matched %@ and %@ for %d points", card.contents, otherCard.contents, scoreAdjustment];
-                    } else {
-                        //
-                        // No match!
-                        //
-                        otherCard.faceUp = NO;
-                        scoreAdjustment -= MISMATCH_PENALTY;
-                        self.lastResult = [NSString stringWithFormat:@"%@ and %@ don't match! %d point penalty!", card.contents, otherCard.contents, scoreAdjustment];
-                    }
-                }
-            }
+            NSSet *playableCards       = [self selectPlayableCards];
+            scoreAdjustment            = [self calculateScoreFor:card using:playableCards];
+            scoreAdjustmentDescription = [self descriptionForMatching:card to:playableCards withScore:scoreAdjustment];
             
-            if (scoreAdjustment == 0) {
-                // We didn't adjust any score, so there were no matches/mismatches
-                self.lastResult = [NSString stringWithFormat:@"Flipped up %@", card.contents];
-            }
+            // Always subtract a flip cost
             scoreAdjustment -= FLIP_COST;
         }
         
+        self.lastResult = scoreAdjustmentDescription;
         self.score += scoreAdjustment;
         card.faceUp = !card.faceUp;
     }
+}
+
+-(NSString *)descriptionForMatching:(Card *)card to:(NSSet *)playableCards withScore:(int)score
+{
+    if (score == 0) {
+        // We didn't adjust any score
+        return [NSString stringWithFormat:@"Flipped up %@", card.contents];
+    } else if (score > 0) {
+        // There was a match
+        return [self descriptionForMatchOf:card to:playableCards withScore:score];
+    } else {
+        // Negative score means no match (with a penalty)
+        return [self descriptionForPenaltyOf:card to:playableCards withScore:score];
+    }
+    
+}
+
+-(NSString *)descriptionForMatchOf:(Card *)card to:(NSSet *)otherCards withScore:(int)score
+{
+    if (otherCards.count == 1) {
+        Card *otherCard = otherCards.anyObject;
+        return [NSString stringWithFormat:@"Matched %@ and %@ for %d points", card.contents, otherCard.contents, score];
+    } else {
+        // TODO: handle output for case of > 1 card matches..
+        return @"no description for multi-card match";
+    }
+}
+
+-(NSString *)descriptionForPenaltyOf:(Card *)card to:(NSSet *)otherCards withScore:(int)score
+{
+    if (otherCards.count == 1) {
+        Card *otherCard = otherCards.anyObject;
+        return [NSString stringWithFormat:@"%@ and %@ don't match! %d point penalty!", card.contents, otherCard.contents, score];
+    } else {
+        // TODO: handle output for case of > 1 card matches..
+        return @"no description for multi-card match";
+    }
+}
+
+-(NSSet *)selectPlayableCards
+{
+    NSMutableSet *results = [[NSMutableSet alloc] init];
+    for (Card *otherCard in self.cards) {
+        if (otherCard.isFaceUp && !otherCard.isUnPlayable) {
+            [results addObject:otherCard];
+        }
+    }
+    return results;
+}
+
+-(int)calculateScoreFor:(Card *)card using:(NSSet *)otherCards
+{
+    int score = 0;
+    if (otherCards.count) {
+        int matchScore = [card match:otherCards.allObjects];
+        
+        // Set cards to be unplayable if there's been a match
+        for (Card *otherCard in otherCards) {
+            otherCard.unPlayable = (matchScore != 0);
+            otherCard.faceUp = (matchScore != 0);
+        }
+        
+        // Set this card to be unplayable if there's been a match
+        card.unPlayable = (matchScore != 0);
+
+        if (matchScore) {
+            score = matchScore * MATCH_BONUS;
+        } else {
+            score -= MISMATCH_PENALTY;
+        }
+    }
+    return score;
 }
 
 @end
