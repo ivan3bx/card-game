@@ -56,7 +56,22 @@
         cardButton.alpha = card.isUnPlayable ? 0.3 : 1.0;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    self.results.text = self.game.lastResult;
+    self.results.text = [self descriptionForMatching:self.game.lastMatchedCards
+                                           withScore:self.game.lastScoreAdjustment];
+}
+
+-(NSString *)descriptionForMatching:(NSArray *)cards withScore:(int)score
+{
+    if (score == 0) {
+        // We didn't adjust any score
+        return [NSString stringWithFormat:@"Flipped up %@", ((Card *)cards.lastObject).contents];
+    } else if (score > 0) {
+        // There was a match
+        return [NSString stringWithFormat:@"Matched %@ for %d points", [cards componentsJoinedByString:@" and "], score];
+    } else {
+        // Negative score means no match (with a penalty)
+        return [NSString stringWithFormat:@"%@ don't match! %d point penalty!", [cards componentsJoinedByString:@" and "], score];
+    }
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons
@@ -80,6 +95,5 @@
     self.count++;
     [self updateUI];
 }
-
 
 @end

@@ -15,7 +15,8 @@
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (nonatomic, readwrite) int score;
-@property (nonatomic, readwrite) NSString *lastResult;
+@property (nonatomic, readwrite) int lastScoreAdjustment;
+@property (nonatomic, readwrite) NSArray *lastMatchedCards;
 @property (nonatomic, readwrite) NSUInteger numberOfCardsToMatch;
 @end
 
@@ -56,9 +57,7 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = self.cards[index];
-    
     int scoreAdjustment = 0;
-    NSString *scoreAdjustmentDescription = @"";
     
     if (!card.isUnPlayable) {
         //
@@ -68,41 +67,17 @@
             // Card is transitioning to 'faceup', and might match!
             NSArray *playableCards     = [self selectPlayableCards];
             scoreAdjustment            = [self calculateScoreFor:card using:playableCards];
-            scoreAdjustmentDescription = [self descriptionForMatching:[playableCards arrayByAddingObject:card] withScore:scoreAdjustment];
             
+            self.lastMatchedCards = [playableCards arrayByAddingObject:card];
+            self.lastScoreAdjustment = scoreAdjustment;
+
             // Always subtract a flip cost
             scoreAdjustment -= FLIP_COST;
         }
         
-        self.lastResult = scoreAdjustmentDescription;
         self.score += scoreAdjustment;
         card.faceUp = !card.faceUp;
     }
-}
-
--(NSString *)descriptionForMatching:(NSArray *)cards withScore:(int)score
-{
-    if (score == 0) {
-        // We didn't adjust any score
-        return [NSString stringWithFormat:@"Flipped up %@", ((Card *)cards.lastObject).contents];
-    } else if (score > 0) {
-        // There was a match
-        return [self descriptionForMatchOf:cards withScore:score];
-    } else {
-        // Negative score means no match (with a penalty)
-        return [self descriptionForPenaltyOf:cards withScore:score];
-    }
-    
-}
-
--(NSString *)descriptionForMatchOf:(NSArray *)cards withScore:(int)score
-{
-    return [NSString stringWithFormat:@"Matched %@ for %d points", [cards componentsJoinedByString:@" and "], score];
-}
-
--(NSString *)descriptionForPenaltyOf:(NSArray *)cards withScore:(int)score
-{
-    return [NSString stringWithFormat:@"%@ don't match! %d point penalty!", [cards componentsJoinedByString:@" and "], score];
 }
 
 -(NSArray *)selectPlayableCards

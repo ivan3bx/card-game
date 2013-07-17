@@ -26,5 +26,11 @@
 -(Card*)cardAtIndex:(NSUInteger)index;
 
 @property(nonatomic, readonly) int score;
-@property(nonatomic, readonly) NSString *lastResult;
+
+// The last set of cards that were used to modify the score
+@property(nonatomic, readonly) NSArray *lastMatchedCards;
+
+// The last adjustment made to the score
+@property(nonatomic, readonly) int lastScoreAdjustment;
+
 @end
