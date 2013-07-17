@@ -97,21 +97,12 @@
 
 -(NSString *)descriptionForMatchOf:(NSArray *)cards withScore:(int)score
 {
-    if (cards.count == 2) {
-        return [NSString stringWithFormat:@"Matched %@ and %@ for %d points", ((Card *)cards[0]).contents, ((Card *)cards[1]).contents, score];
-    } else {
-        return @"no description for multi-card match";
-    }
+    return [NSString stringWithFormat:@"Matched %@ for %d points", [cards componentsJoinedByString:@" and "], score];
 }
 
 -(NSString *)descriptionForPenaltyOf:(NSArray *)cards withScore:(int)score
 {
-    if (cards.count == 2) {
-        return [NSString stringWithFormat:@"%@ and %@ don't match! %d point penalty!", ((Card *)cards[0]).contents, ((Card *)cards[1]).contents, score];
-    } else {
-        // TODO: handle output for case of > 1 card matches..
-        return @"no description for multi-card match";
-    }
+    return [NSString stringWithFormat:@"%@ don't match! %d point penalty!", [cards componentsJoinedByString:@" and "], score];
 }
 
 -(NSArray *)selectPlayableCards
