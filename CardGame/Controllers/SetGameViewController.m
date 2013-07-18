@@ -27,16 +27,14 @@
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
 
-        
-        [self setTitleFor:cardButton with:card onState:UIControlStateSelected];
-        [self setTitleFor:cardButton with:card onState:(UIControlStateSelected|UIControlStateDisabled)];
+        [self setTitleFor:cardButton with:card onState:UIControlStateNormal];
         
         if (card.isFaceUp) {
             cardButton.selected = YES;
-            [cardButton setImage:nil forState:UIControlStateNormal];
+            [cardButton setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
         } else {
             cardButton.selected = NO;
-            [cardButton setImage:[UIImage imageNamed:@"lur_futurama.png"] forState:UIControlStateNormal];
+            [cardButton setBackgroundColor:[UIColor clearColor]];
         }
         
         cardButton.enabled = !card.isUnPlayable;
@@ -47,11 +45,11 @@
 
 -(void)setTitleFor:(UIButton *)cardButton with:(SetCard *)card onState:(UIControlState)state
 {
-    NSMutableAttributedString *title;
-    title = [[NSMutableAttributedString alloc] initWithAttributedString:[cardButton attributedTitleForState:state]];
-    if (!title.length) {
-        [title appendAttributedString:[[NSAttributedString alloc] initWithString:card.contents]];
-    }
+    NSAttributedString *buttonString = [cardButton attributedTitleForState:state];
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithAttributedString:buttonString];
+    
+    // Set the text
+    [title setAttributedString:[[NSAttributedString alloc] initWithString:card.contents]];
     
     // Set color & shading
     [title addAttribute:NSForegroundColorAttributeName

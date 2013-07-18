@@ -94,7 +94,7 @@
 -(int)calculateScoreFor:(Card *)card using:(NSArray *)otherCards
 {
     int score = 0;
-    if (otherCards.count) {
+    if (otherCards.count == (self.numberOfCardsToMatch - 1)) {
         int matchScore = [card match:otherCards];
         
         // Set cards to be unplayable if there's been a match
