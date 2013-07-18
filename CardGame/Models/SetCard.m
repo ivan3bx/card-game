@@ -33,9 +33,9 @@
     SetCard *second = otherCards[1];
     
     BOOL shapeMatch  = [self.shape isEqualToString:first.shape] && [self.shape isEqualToString:second.shape];
-    BOOL colorMatch  = [self.color isEqual:first.color] && [self.color isEqual:second.color];
-    BOOL numberMatch = self.number == first.number == second.number;
-    BOOL shadeMatch  = self.shade == first.shade == second.shade;
+//    BOOL colorMatch  = [self.color isEqual:first.color] && [self.color isEqual:second.color];
+//    BOOL numberMatch = self.number == first.number == second.number;
+//    BOOL shadeMatch  = self.shade == first.shade == second.shade;
 
     int score = 0;
     // this is blatantly wrong..

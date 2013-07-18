@@ -9,34 +9,17 @@
 #import "SetGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
-#import "CardMatchingGame.h"
-
-@interface SetGameViewController ()
-@property (nonatomic) NSUInteger count;
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *results;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) CardMatchingGame *game;
-@end
 
 @implementation SetGameViewController
 
 
--(void)setCount:(NSUInteger)count
-{
-    _count = count;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", count];
-}
-
 -(CardMatchingGame *)game
 {
-    if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                  usingDeck:[[SetCardDeck alloc] init]
-                                             matchingNumber:3];
+    if (!super.game) {
+        [super initializeCardMatchingGameWithDeck:[[SetCardDeck alloc] init]
+                               checkingForMatchAt:3];
     }
-    return _game;
+    return super.game;
 }
 
 -(void)updateUI
@@ -78,26 +61,6 @@
     // Set font size
     [title addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16.0] range:NSMakeRange(0, title.length)];
     [cardButton setAttributedTitle:title forState:state];
-}
-
--(void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
-}
-
-
-- (IBAction)deal
-{
-    self.game = nil;
-    [self updateUI];
-}
-
-- (IBAction)flipCard:(UIButton *)sender
-{
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.count++;
-    [self updateUI];
 }
 
 @end

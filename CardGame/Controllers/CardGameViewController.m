@@ -8,33 +8,16 @@
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
-#import "CardMatchingGame.h"
-
-@interface CardGameViewController ()
-@property (nonatomic) NSUInteger count;
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *results;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) CardMatchingGame *game;
-@end
 
 @implementation CardGameViewController
 
--(void)setCount:(NSUInteger)count
-{
-    _count = count;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", count];
-}
-
 -(CardMatchingGame *)game
 {
-    if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
-                                                  usingDeck:[[PlayingCardDeck alloc] init]
-                                             matchingNumber:2];
+    if (!super.game) {
+        [super initializeCardMatchingGameWithDeck:[[PlayingCardDeck alloc] init]
+                               checkingForMatchAt:2];
     }
-    return _game;
+    return super.game;
 }
 
 -(void)updateUI
@@ -72,28 +55,6 @@
         // Negative score means no match (with a penalty)
         return [NSString stringWithFormat:@"%@ don't match! %d point penalty!", [cards componentsJoinedByString:@" and "], score];
     }
-}
-
--(void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
-}
-- (IBAction)changeCardMatchCount:(id)sender {
-}
-
-- (IBAction)deal
-{
-    self.game = nil;
-    self.count = 0;
-    [self updateUI];
-}
-
-- (IBAction)flipCard:(UIButton *)sender
-{
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.count++;
-    [self updateUI];
 }
 
 @end
