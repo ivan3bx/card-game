@@ -26,8 +26,9 @@
 {
     for (UIButton *cardButton in self.cardButtons) {
         SetCard *card = (SetCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-
-        [self setTitleFor:cardButton with:card onState:UIControlStateNormal];
+        
+        // Set UIButton text
+        [cardButton setAttributedTitle:[self descriptionForCard:card] forState:UIControlStateNormal];
         
         if (card.isFaceUp) {
             cardButton.selected = YES;
@@ -40,13 +41,41 @@
         cardButton.enabled = !card.isUnPlayable;
         cardButton.alpha = card.isUnPlayable ? 0.2 : 1.0;
     }
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    
+    // Set score label contents
+    self.scoreLabel.text = [self descriptionForScore:self.game.score];
+    
+    // Set last results
+    self.results.attributedText = [self descriptionForMatching:self.game.lastMatchedCards withScore:self.game.lastScoreAdjustment];
 }
 
--(void)setTitleFor:(UIButton *)cardButton with:(SetCard *)card onState:(UIControlState)state
+-(NSString *)descriptionForScore:(int)score
 {
-    NSAttributedString *buttonString = [cardButton attributedTitleForState:state];
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithAttributedString:buttonString];
+    return [NSString stringWithFormat:@"Score: %d", score];
+}
+
+-(NSAttributedString *)descriptionForMatching:(NSArray *)cards withScore:(int)score
+{
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
+    if (score == 0) {
+        // We didn't adjust any score
+        NSString *resultString = [NSString stringWithFormat:@"Flipped up %@", ((SetCard *)cards.lastObject).contents];
+        [result appendAttributedString:[[NSAttributedString alloc] initWithString:resultString]];
+    } else if (score > 0) {
+        // There was a match
+        NSString *resultString = [NSString stringWithFormat:@"Matched %@ for %d points", [cards componentsJoinedByString:@" and "], score];
+        [result appendAttributedString:[[NSAttributedString alloc] initWithString:resultString]];
+    } else {
+        // Negative score means no match (with a penalty)
+        NSString *resultString = [NSString stringWithFormat:@"%@ don't match! %d point penalty!", [cards componentsJoinedByString:@" and "], score];
+        [result appendAttributedString:[[NSAttributedString alloc] initWithString:resultString]];
+    }
+    return result;
+}
+
+-(NSAttributedString *)descriptionForCard:(SetCard *)card
+{
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] init];
     
     // Set the text
     [title setAttributedString:[[NSAttributedString alloc] initWithString:card.contents]];
@@ -58,7 +87,7 @@
     
     // Set font size
     [title addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16.0] range:NSMakeRange(0, title.length)];
-    [cardButton setAttributedTitle:title forState:state];
+    return title;
 }
 
 @end
